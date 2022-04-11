@@ -22,7 +22,7 @@ public class EmployeeRepository {
         Connection connection = null;
         String url = "jdbc:postgresql://localhost:5432/employee";
         String user = "postgres";
-        String password = "postgres";
+        String password = "174180183";
 
         try {
             connection = DriverManager.getConnection(url, user, password);
@@ -41,11 +41,12 @@ public class EmployeeRepository {
         int status = 0;
         try {
             Connection connection = EmployeeRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement("insert into users(name,email,country) values (?,?,?)");
+            PreparedStatement ps = connection.prepareStatement("insert into users(name,email,country,number,role) values (?,?,?,?,?)");
             ps.setString(1, employee.getName());
             ps.setString(2, employee.getEmail());
             ps.setString(3, employee.getCountry());
-
+            ps.setString(4, employee.getNumber());
+            ps.setString(5, employee.getRole());
             status = ps.executeUpdate();
             connection.close();
 
@@ -66,6 +67,7 @@ public class EmployeeRepository {
             ps.setString(2, employee.getEmail());
             ps.setString(3, employee.getCountry());
             ps.setInt(4, employee.getId());
+            ps.setString(5,employee.getNumber());
 
             status = ps.executeUpdate();
             connection.close();
