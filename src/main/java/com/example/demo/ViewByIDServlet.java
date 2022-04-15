@@ -15,11 +15,19 @@ public class ViewByIDServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
+        int maxID=100;//fix it
+
         String sid = request.getParameter("id");
+
+
+
+
         int id = Integer.parseInt(sid);
 
         Employee employee = EmployeeRepository.getEmployeeById(id);
-
+        if(employee.getId()==0){
+            throw new IOException("Wrong parameters!!!");
+        }
         out.print(employee);
         out.close();
     }

@@ -20,6 +20,7 @@ public class SaveServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String name = request.getParameter("name");
+
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         String number=request.getParameter("number");
